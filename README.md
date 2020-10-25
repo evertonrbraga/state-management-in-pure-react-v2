@@ -1,1 +1,1 @@
-# state-management-in-pure-react-v2
+Frontend Masters's course

@@ -28,19 +28,26 @@ class Counter extends Component {
     this.reset = this.reset.bind(this);
   }
 
+  updateDocumentTitle = () => {
+    document.title = `Counter: ${this.state.count}`;
+  };
+
   increment() {
     this.setState(increment, () => {
       storeStateInLocalStorage(this.state);
+      this.updateDocumentTitle();
     });
     console.log('Before:', this.state);
   }
 
   decrement() {
-    this.setState({ count: this.state.count - 1 });
+    this.setState({ count: this.state.count - 1 }, () =>
+      this.updateDocumentTitle(),
+    );
   }
 
   reset() {
-    this.setState({ count: 0 });
+    this.setState({ count: 0 }, () => this.updateDocumentTitle());
   }
 
   render() {

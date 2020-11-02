@@ -1,46 +1,17 @@
 import React, { useState } from 'react';
 
-const increments = (state, max, step) => {
-  if (state.count >= max) return;
-  return { count: state.count + step };
-};
-
-const getStateFromLocalStorage = () => {
-  const storage = localStorage.getItem('counterState');
-  console.log(storage);
-  if (storage) return JSON.parse(storage);
-  return { count: 0 };
-};
-
-const storeStateInLocalStorage = (state) => {
-  localStorage.setItem('counterState', JSON.stringify(state));
-  console.log(localStorage);
-};
-
 const HooksCounter = ({ max, step }) => {
-  const [state, setState] = useState(getStateFromLocalStorage());
-
-  const updateDocumentTitle = () => {
-    document.title = `HooksCounter: ${state.count}`;
-  };
+  const [count, setCount] = useState(0);
 
   const increment = () => {
-    setState(() => {
-      increments(state, max, step);
-      storeStateInLocalStorage(state);
+    setCount((count) => {
+      if (count >= max) return count;
+      return count + step;
     });
-    console.log('Before:', state);
   };
+  const decrement = () => setCount(count - 1);
+  const reset = () => setCount(0);
 
-  const decrement = () => {
-    setState(state.count - 1);
-  };
-
-  const reset = () => {
-    setState((state.count = 0));
-  };
-
-  const { count } = state;
   return (
     <div className="ClassCounter">
       <p className="count">{count}</p>

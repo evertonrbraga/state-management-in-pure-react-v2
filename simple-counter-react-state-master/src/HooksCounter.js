@@ -11,6 +11,8 @@ const storeStateInLocalStorage = (count) => {
   console.log(localStorage);
 };
 
+const useLocalStorage = () => {};
+
 const HooksCounter = ({ max, step }) => {
   const [count, setCount] = useState(getStateFromLocalStorage);
 

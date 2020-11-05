@@ -22,11 +22,14 @@ const useLocalStorage = (initialState, key) => {
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify({ value }));
-  });
+  }, [value]);
+
+  return [value, setValue];
 };
 
 const HooksCounter = ({ max, step }) => {
-  const [count, setCount] = useState(getStateFromLocalStorage);
+  // const [count, setCount] = useState(getStateFromLocalStorage()); default state way
+  const [count, setCount] = useLocalStorage(0, 'count'); // custom hook way
 
   const increment = () => {
     setCount((count) => {

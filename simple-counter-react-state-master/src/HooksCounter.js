@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // const getStateFromLocalStorage = () => {
 //   const storage = localStorage.getItem('counterState');
@@ -32,12 +32,24 @@ const HooksCounter = ({ max, step }) => {
   // const [count, setCount] = useLocalStorage(0, 'count'); // custom hook way
   const [count, setCount] = useState(0);
 
+  const countRef = useRef();
+
+  let message = '';
+  if (countRef.current < count) message = 'Higher';
+  if (countRef.current > count) message = 'Lower';
+
+  countRef.current = count;
+
   const increment = () => {
-    setCount((count) => {
-      if (count >= max) return count;
-      return count + step;
-    });
+    setCount((c) => c + 1);
   };
+
+  // const increment = () => {
+  //   setCount((count) => {
+  //     if (count >= max) return count;
+  //     return count + step;
+  //   });
+  // };
 
   const decrement = () => {
     setCount((count) => {
@@ -64,6 +76,7 @@ const HooksCounter = ({ max, step }) => {
 
   return (
     <div className="ClassCounter">
+      <p>{message}</p>
       <p className="count">{count}</p>
       <section className="controls">
         <button onClick={increment}>Increment</button>

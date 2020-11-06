@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-const getStateFromLocalStorage = () => {
-  const storage = localStorage.getItem('counterState');
-  if (storage) return JSON.parse(storage);
-  return 0;
-};
+// const getStateFromLocalStorage = () => {
+//   const storage = localStorage.getItem('counterState');
+//   if (storage) return JSON.parse(storage);
+//   return 0;
+// };
 
-const storeStateInLocalStorage = (count) => {
-  localStorage.setItem('counterState', JSON.stringify(count));
-  console.log(localStorage);
-};
+// const storeStateInLocalStorage = (count) => {
+//   localStorage.setItem('counterState', JSON.stringify(count));
+//   console.log(localStorage);
+// };
 
 const useLocalStorage = (initialState, key) => {
   const get = () => {
@@ -51,9 +51,9 @@ const HooksCounter = ({ max, step }) => {
     document.title = `Counter: ${count}`;
   });
 
-  useEffect(() => {
-    storeStateInLocalStorage(count);
-  }, [count]);
+  // useEffect(() => {
+  //   storeStateInLocalStorage(count);
+  // }, [count]);
 
   return (
     <div className="ClassCounter">

@@ -8,14 +8,12 @@ const increment = (state, props) => {
 
 const getStateFromLocalStorage = () => {
   const storage = localStorage.getItem('counterState');
-  console.log(storage);
   if (storage) return JSON.parse(storage);
   return { count: 0 };
 };
 
 const storeStateInLocalStorage = (state) => {
   localStorage.setItem('counterState', JSON.stringify(state));
-  console.log(localStorage);
 };
 
 class ClassCounter extends Component {
@@ -37,7 +35,6 @@ class ClassCounter extends Component {
       storeStateInLocalStorage(this.state);
       this.updateDocumentTitle();
     });
-    console.log('Before:', this.state);
   }
 
   decrement() {
@@ -48,6 +45,12 @@ class ClassCounter extends Component {
 
   reset() {
     this.setState({ count: 0 }, () => this.updateDocumentTitle());
+  }
+
+  componentDidUpdate() {
+    setTimeout(() => {
+      console.log(`Count: ${this.state.count}`);
+    }, 3000);
   }
 
   render() {

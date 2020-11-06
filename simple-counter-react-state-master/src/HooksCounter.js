@@ -28,8 +28,9 @@ const useLocalStorage = (initialState, key) => {
 };
 
 const HooksCounter = ({ max, step }) => {
-  // const [count, setCount] = useState(getStateFromLocalStorage()); default state way
-  const [count, setCount] = useLocalStorage(0, 'count'); // custom hook way
+  // const [count, setCount] = useState(getStateFromLocalStorage()); //default state way
+  // const [count, setCount] = useLocalStorage(0, 'count'); // custom hook way
+  const [count, setCount] = useState(0);
 
   const increment = () => {
     setCount((count) => {
@@ -48,8 +49,14 @@ const HooksCounter = ({ max, step }) => {
   const reset = () => setCount(0);
 
   useEffect(() => {
-    document.title = `Counter: ${count}`;
+    setTimeout(() => {
+      console.log(`Counter: ${count}`);
+    }, 3000);
   });
+
+  // useEffect(() => {
+  //   document.title = `Counter: ${count}`;
+  // });
 
   // useEffect(() => {
   //   storeStateInLocalStorage(count);

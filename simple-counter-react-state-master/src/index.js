@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import HooksCounter from './HooksCounter';
-// import ClassCounter from './ClassCounter';
 
 import './styles.scss';
 
@@ -11,7 +10,6 @@ const Application = () => {
     <main className="Application">
       <section className="Counters">
         <HooksCounter max={15} step={1} />
-        {/* <ClassCounter max={15} step={1} /> */}
       </section>
     </main>
   );

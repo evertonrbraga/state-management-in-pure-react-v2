@@ -3,7 +3,7 @@ import React, { useReducer, createContext, useCallback } from 'react';
 import id from 'uuid/v4';
 import initialState from './initialState';
 
-const GrudgeContext = createContext();
+export const GrudgeContext = createContext();
 
 const GRUDGE_ADD = 'GRUDGE_ADD';
 const GRUDGE_FORGIVE = 'GRUDGE_FORGIVE';
@@ -47,7 +47,7 @@ export const GrudgeProvider = ({ children }) => {
     (id) => {
       dispatch({
         type: GRUDGE_FORGIVE,
-        payload: id,
+        payload: { id },
       });
     },
     [dispatch]
